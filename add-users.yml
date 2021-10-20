@@ -1,0 +1,14 @@
+- name: SSH public key adder
+  hosts: all
+  user: '{{ username }}'
+  become: true
+  vars:
+  - username: centos
+  tasks:
+  - name: Add authorized keys to the authorized_key file on one or more machines
+    authorized_key:
+      user: '{{ username }}'
+      state: present
+      key: '{{ item }}'
+    loop:
+      - put-keys-here
